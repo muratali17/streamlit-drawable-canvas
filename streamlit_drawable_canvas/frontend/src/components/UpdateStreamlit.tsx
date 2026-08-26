@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { Streamlit } from "streamlit-component-lib"
 import { fabric } from "fabric"
 
-const DELAY_DEBOUNCE = 200
 
 /**
  * Download image and JSON data from canvas to send back to Streamlit
@@ -54,6 +53,7 @@ interface UpdateStreamlitProps {
   stateToSendToStreamlit: Object
   canvasWidth: number
   canvasHeight: number
+  debounceDelay: number
 }
 
 /**
@@ -68,7 +68,7 @@ const UpdateStreamlit = (props: UpdateStreamlitProps) => {
   // Especially when drawing lines and circles which continuously render while drawing
   const debouncedStateToSend = useDebounce(
     props.stateToSendToStreamlit,
-    DELAY_DEBOUNCE
+    props.debounceDelay
   )
 
   // Initialize canvas

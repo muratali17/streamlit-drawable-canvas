@@ -213,6 +213,7 @@ const DrawableCanvas = ({ args }: ComponentProps) => {
             realtimeUpdateStreamlit || forceSendToStreamlit
           }
           stateToSendToStreamlit={currentState}
+          debounceDelay={drawingMode === "transform" ? 1000 : 200}
         />
       </div>
       <div
